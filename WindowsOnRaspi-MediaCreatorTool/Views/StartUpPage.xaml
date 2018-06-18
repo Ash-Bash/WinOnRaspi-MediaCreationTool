@@ -17,5 +17,6 @@
             </StackPanel>
         </StackPanel>
         <Button x:Name="startButton" Content="Start" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="128" Height="36" Margin="0,0,0,100" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="startButton_Click"/>
+        <TextBlock Text="Working In Progress" Foreground="#7FFFFFFF" FontSize="20" TextAlignment="Center" VerticalAlignment="Top" Margin="0,210,0,217"/>
     </Grid>
 </Page>
