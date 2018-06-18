@@ -1,0 +1,21 @@
+﻿<Page x:Class="WindowsOnRaspi_MediaCreatorTool.Views.StartUpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WindowsOnRaspi_MediaCreatorTool.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StartUpPage">
+
+    <Grid Background="#FF2A006C">
+        <StackPanel Height="100" Orientation="Horizontal" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Win On Raspi Media Creation Tool;component/Assets/Images/WORICLogo.png"/>
+            <StackPanel>
+                <TextBlock Text="Windows" Foreground="White" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBlock Text="On Raspberry Pi" Foreground="White" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="startButton" Content="Start" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="128" Height="36" Margin="0,0,0,100" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="startButton_Click"/>
+    </Grid>
+</Page>

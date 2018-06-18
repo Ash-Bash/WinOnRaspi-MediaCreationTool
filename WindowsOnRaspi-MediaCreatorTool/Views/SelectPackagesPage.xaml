@@ -1,0 +1,39 @@
+﻿<Page x:Class="WindowsOnRaspi_MediaCreatorTool.Views.SelectPackagesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WindowsOnRaspi_MediaCreatorTool.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SelectPackagesPage">
+
+    <Grid Background="#FF2A006C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <Grid VerticalAlignment="Top" Grid.Row="0">
+            <TextBlock Text="Select Window On Raspi Packages" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock Text="RaspberryPiPkg Zip File" Margin="0,0,0,5" Foreground="#FFC5C5C5"/>
+                    <TextBox x:Name="browseRaspiPkgTextBox" Height="22.4" />
+                    <Button x:Name="browseRaspiPkgButton" Content="Browse" HorizontalAlignment="Left" Width="128" Height="36" Margin="0,5,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="browseRaspiPkgButton_Click"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Windows On RPI Zip File" Margin="0,0,0,5" Foreground="#FFC5C5C5"/>
+                    <TextBox x:Name="windowsOnRaspiTextBox" Height="22.4" />
+                    <Button x:Name="browseWindowsOnRaspiButton" Content="Browse" HorizontalAlignment="Left" Width="128" Height="36" Margin="0,5,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="browseWindowsOnRaspiButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0,0,0,0" Grid.Row="2">
+            <Button x:Name="cancelButton" Content="Cancel" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="128" Height="36" Margin="10,0,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="cancelButton_Click"/>
+            <Button x:Name="nextButton" Content="Next" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128" Height="36" Margin="0,0,10,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="nextButton_Click"/>
+        </Grid>
+    </Grid>
+</Page>

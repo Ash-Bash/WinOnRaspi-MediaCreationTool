@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsOnRaspi_MediaCreatorTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Windows On Raspi Media Creation Tool" Height="575" Width="660" MinWidth="660" MinHeight="575" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+    <Frame x:Name="MainFrame">
         
-    </Grid>
+    </Frame>
 </Window>

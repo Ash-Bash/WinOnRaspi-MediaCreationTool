@@ -1,0 +1,34 @@
+﻿<Page x:Class="WindowsOnRaspi_MediaCreatorTool.Views.CleanUpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WindowsOnRaspi_MediaCreatorTool.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CleanUpPage">
+
+    <Grid Background="#FF2A006C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <Grid VerticalAlignment="Top" Grid.Row="0">
+            <TextBlock Text="Cleaning Up" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ProgressBar IsIndeterminate="True" Width="16" Margin="0,0,10,0"/>
+                    <TextBlock Text="Please Wait..." Foreground="White"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0,0,0,0" Grid.Row="2">
+            <!--<Button x:Name="cancelButton" Content="Cancel" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="128" Height="36" Margin="10,0,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0"/>
+            <Button x:Name="backButton" Content="Back" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128" Height="36" Margin="0,0,148,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0"/>
+            <Button x:Name="nextButton" Content="Next" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128" Height="36" Margin="0,0,10,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0"/>-->
+        </Grid>
+    </Grid>
+</Page>

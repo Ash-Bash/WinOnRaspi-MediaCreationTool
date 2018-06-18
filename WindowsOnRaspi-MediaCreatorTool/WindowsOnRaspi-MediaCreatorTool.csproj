@@ -7,12 +7,28 @@
     <ProjectGuid>{C6F24D54-C0EC-4DD4-B5DD-03D070CD62FD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WindowsOnRaspi_MediaCreatorTool</RootNamespace>
-    <AssemblyName>WindowsOnRaspi-MediaCreatorTool</AssemblyName>
+    <AssemblyName>Win On Raspi Media Creation Tool</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Ash-B\OneDrive\Desktop\WinOnRaspi Image Creator\WOR Media Creation Tool\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>0.1.101.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,9 +49,37 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\Images\WORICLogo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1DF51FE16C3F6B988931CE96EAD74D88640F4AE2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WindowsOnRaspi-MediaCreatorTool_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack.Core.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack.Shell.1.1.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.Automation.dll.10.0.10586.0\lib\net40\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management.Instrumentation" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,6 +98,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\AddingWindowsFilesToSDCardPage.xaml.cs">
+      <DependentUpon>AddingWindowsFilesToSDCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CleanUpPage.xaml.cs">
+      <DependentUpon>CleanUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompletedSetupPage.xaml.cs">
+      <DependentUpon>CompletedSetupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormatSDCardPage.xaml.cs">
+      <DependentUpon>FormatSDCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManualSelectionDriversPage.xaml.cs">
+      <DependentUpon>ManualSelectionDriversPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifingInstallWimPage.xaml.cs">
+      <DependentUpon>ModifingInstallWimPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectedRecommendedDriversPage.xaml.cs">
+      <DependentUpon>SelectedRecommendedDriversPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectPackagesPage.xaml.cs">
+      <DependentUpon>SelectPackagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectSDCardPage.xaml.cs">
+      <DependentUpon>SelectSDCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectWindowsISOFilePage.xaml.cs">
+      <DependentUpon>SelectWindowsISOFilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingUpTempFilesPage.xaml.cs">
+      <DependentUpon>SettingUpTempFilesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SigningWindowsFilesPage.xaml.cs">
+      <DependentUpon>SigningWindowsFilesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartUpPage.xaml.cs">
+      <DependentUpon>StartUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TermsConditionsPage.xaml.cs">
+      <DependentUpon>TermsConditionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\winRaspItem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,6 +153,62 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddingWindowsFilesToSDCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CleanUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CompletedSetupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FormatSDCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManualSelectionDriversPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifingInstallWimPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectedRecommendedDriversPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectPackagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectSDCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectWindowsISOFilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingUpTempFilesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SigningWindowsFilesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StartUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TermsConditionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -85,13 +228,33 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Assets\Data\firststartup.reg" />
+    <None Include="Assets\Data\InstallUEFI.cmd" />
+    <None Include="Assets\Data\SignUEFIFiles.cmd" />
+    <None Include="Assets\Data\signWindows.cmd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="WindowsOnRaspi-MediaCreatorTool_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\RaspPiIcon.ico" />
+    <Resource Include="Assets\Images\RaspPiIcon.png" />
+    <Resource Include="Assets\Images\WindowsLogo.png" />
+    <Resource Include="Assets\Images\WORICLogo.ico" />
+    <Resource Include="Assets\Images\WORICLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
