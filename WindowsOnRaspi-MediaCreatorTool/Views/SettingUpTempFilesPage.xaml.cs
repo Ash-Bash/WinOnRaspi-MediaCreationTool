@@ -72,35 +72,68 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             var transferZipsTask = Task.Run(() =>
             {
-                // Extracts all required Zip Files
-                File.Copy(raspItem.winImagePath, System.IO.Path.Combine(raspItem.tempFolders[1], "Windows10-Arm64.iso"));
-                ZipFile.ExtractToDirectory(raspItem.raspPiPkgPath, raspItem.tempFolders[3]);
-                ZipFile.ExtractToDirectory(raspItem.rpiwinStuffPath, raspItem.tempFolders[3]);
-
-                // Rename Folders in the Extracted Folders
-                var extrFolders = Directory.GetDirectories(raspItem.tempFolders[3]);
-                Directory.Move(extrFolders[0], System.IO.Path.Combine(raspItem.appFolderPath, "temp", "Extracted Folders", "RaspberryPiPkg"));
-                Directory.Move(extrFolders[1], System.IO.Path.Combine(raspItem.appFolderPath, "temp", "Extracted Folders", "winOnRaspi"));
-
-                //createWindowsISOFile();
-                //copyInstallWimFile();
-
-
                 //Creates First Start Up Reg File
                 string firstStartUpString = Properties.Resources.firststartup;
                 string instalUEFIString = Properties.Resources.InstallUEFI;
                 string signUEFIFilesString = Properties.Resources.SignUEFIFiles;
                 string signWindowsString = Properties.Resources.signWindows;
-                File.WriteAllText(System.IO.Path.Combine(raspItem.appFolderPath, "temp") + "/firststartup.reg", firstStartUpString);
-                File.WriteAllText(System.IO.Path.Combine(raspItem.appFolderPath, "temp") + "/InstallUEFI.cmd", instalUEFIString);
-                File.WriteAllText(System.IO.Path.Combine(raspItem.appFolderPath, "temp") + "/SignUEFIFiles.cmd", signUEFIFilesString);
                 try
                 {
+                    File.WriteAllText(System.IO.Path.Combine(raspItem.appFolderPath, "temp") + "/firststartup.reg", firstStartUpString);
+                    File.WriteAllText(System.IO.Path.Combine(raspItem.appFolderPath, "temp") + "/InstallUEFI.cmd", instalUEFIString);
+                    File.WriteAllText(System.IO.Path.Combine(raspItem.appFolderPath, "temp") + "/SignUEFIFiles.cmd", signUEFIFilesString);
+
                     File.WriteAllText(raspItem.appFolderPath + "/InstallUEFI.cmd", instalUEFIString);
                     File.WriteAllText(raspItem.appFolderPath + "/SignUEFIFiles.cmd", signUEFIFilesString);
                     File.WriteAllText(raspItem.appFolderPath + "/SignWindows.cmd", signWindowsString);
                 }
+                catch
+                {
+
+                }
+
+                // Extracts all required Zip Files
+                try
+                {
+                    File.Copy(raspItem.winImagePath, System.IO.Path.Combine(raspItem.tempFolders[1], "Windows10-Arm64.iso"));
+                }
                 catch {
+
+                }
+
+                try
+                {
+                    ZipFile.ExtractToDirectory(raspItem.raspPiPkgPath, raspItem.tempFolders[3]);
+                }
+                catch
+                {
+
+                }
+
+                try
+                {
+                    ZipFile.ExtractToDirectory(raspItem.rpiwinStuffPath, raspItem.tempFolders[3]);
+                }
+                catch
+                {
+
+                }
+
+                // Rename Folders in the Extracted Folders
+                var extrFolders = Directory.GetDirectories(raspItem.tempFolders[3]);
+                try
+                {
+                    Directory.Move(extrFolders[0], System.IO.Path.Combine(raspItem.appFolderPath, "temp", "Extracted Folders", "RaspberryPiPkg"));
+                } catch
+                {
+
+                }
+
+                try
+                {
+                    Directory.Move(extrFolders[1], System.IO.Path.Combine(raspItem.appFolderPath, "temp", "Extracted Folders", "winOnRaspi"));
+                } catch
+                {
 
                 }
 

@@ -80,7 +80,13 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            window.MainFrame.Content = new SelectWindowsISOFilePage(window, raspItem);
+            if (raspItem.raspPiPkgPath != null && raspItem.rpiwinStuffPath != null)
+            {
+                window.MainFrame.Content = new SelectWindowsISOFilePage(window, raspItem);
+            } else
+            {
+                MessageBox.Show("Can't continue because one or more paths hasn't been filled in!", "Error!");
+            }
         }
     }
 }

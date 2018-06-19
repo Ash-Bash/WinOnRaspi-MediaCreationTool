@@ -67,8 +67,14 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            window.MainFrame.Content = new SettingUpTempFilesPage(window, raspItem);
-            //window.MainFrame.Content = new SelectedRecommendedDriversPage(window, raspItem);
+            if (raspItem.winImagePath != null)
+            {
+                window.MainFrame.Content = new SettingUpTempFilesPage(window, raspItem);
+            }
+            else
+            {
+                MessageBox.Show("Can't continue because you haven't provided a path to a valid .iso file", "Error!");
+            }
         }
     }
 }
