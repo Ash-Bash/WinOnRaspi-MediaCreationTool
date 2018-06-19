@@ -37,6 +37,8 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private void browseRaspiPkgButton_Click(object sender, RoutedEventArgs e)
         {
             CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog();
+            openFileDialog.Filters.Add(new CommonFileDialogFilter("Compression File", "zip"));
+ 
             CommonFileDialogResult result = openFileDialog.ShowDialog();
 
             if (result == CommonFileDialogResult.Ok)
@@ -50,6 +52,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private void browseWindowsOnRaspiButton_Click(object sender, RoutedEventArgs e)
         {
             CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog();
+            openFileDialog.Filters.Add(new CommonFileDialogFilter("Compression File", "zip"));
             CommonFileDialogResult result = openFileDialog.ShowDialog();
 
             if (result == CommonFileDialogResult.Ok)

@@ -31,6 +31,7 @@ namespace WindowsOnRaspi_MediaCreatorTool
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             MainFrame.Content = new StartUpPage(this);
 

@@ -37,6 +37,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private void winImageButton_Click(object sender, RoutedEventArgs e)
         {
             CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog();
+            openFileDialog.Filters.Add(new CommonFileDialogFilter("Disk Image", "iso"));
             CommonFileDialogResult result = openFileDialog.ShowDialog();
 
             if (result == CommonFileDialogResult.Ok)
