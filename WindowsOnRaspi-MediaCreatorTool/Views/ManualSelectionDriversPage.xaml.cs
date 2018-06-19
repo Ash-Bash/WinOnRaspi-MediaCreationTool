@@ -60,7 +60,15 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            window.MainFrame.Content = new CleanUpPage(window, raspItem, false);
+            if (MessageBox.Show("This Action will stop the installation process and cleanup any files that was copied over, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                // user clicked yes
+                window.MainFrame.Content = new CleanUpPage(window, raspItem, false);
+            }
+            else
+            {
+                // user clicked no
+            }
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
