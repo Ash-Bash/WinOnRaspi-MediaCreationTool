@@ -34,6 +34,10 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             this.window = window;
             this.raspItem = raspItem;
+
+            this.window.isLockdownMode = false;
+            this.window.forceCleanUp = true;
+            this.window.raspItem = raspItem;
         }
 
         private void DriversRadioButton_Checked(object sender, RoutedEventArgs e)

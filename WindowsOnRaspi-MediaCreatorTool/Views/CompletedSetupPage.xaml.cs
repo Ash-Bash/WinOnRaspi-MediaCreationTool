@@ -26,14 +26,18 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private MainWindow window;
         private WinRaspItem raspItem;
         private bool wasSuccess;
+        private bool willClose;
 
-        public CompletedSetupPage(MainWindow window, WinRaspItem raspItem, bool wasSuccess)
+        public CompletedSetupPage(MainWindow window, WinRaspItem raspItem, bool wasSuccess, bool willClose = false)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
             this.wasSuccess = wasSuccess;
+
+            this.window.isLockdownMode = false;
+            this.window.forceCleanUp = false;
 
             if (wasSuccess)
             {
@@ -46,6 +50,10 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             else {
                 titleTextBlock.Text = "Unsuccessfully Completed Windows Setup";
                 SuccessStack.Visibility = Visibility.Collapsed;
+            }
+
+            if (willClose) {
+                window.Close();
             }
         }
 

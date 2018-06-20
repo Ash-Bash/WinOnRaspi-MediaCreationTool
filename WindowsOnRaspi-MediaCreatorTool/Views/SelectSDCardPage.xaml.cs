@@ -36,6 +36,9 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.window = window;
             raspItem = new WinRaspItem();
 
+            this.window.isLockdownMode = false;
+            this.window.forceCleanUp = false;
+
             RefreshDisks();
         }
 

@@ -30,6 +30,8 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         {
             InitializeComponent();
             this.window = window;
+            this.window.isLockdownMode = false;
+            this.window.forceCleanUp = false;
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)

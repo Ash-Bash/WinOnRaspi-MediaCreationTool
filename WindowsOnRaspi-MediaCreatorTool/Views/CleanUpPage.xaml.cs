@@ -27,14 +27,19 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private MainWindow window;
         private WinRaspItem raspItem;
         private bool wasSuccess;
+        private bool willClose;
 
-        public CleanUpPage(MainWindow window, WinRaspItem raspItem, bool wasSuccess)
+        public CleanUpPage(MainWindow window, WinRaspItem raspItem, bool wasSuccess, bool willClose = false)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
             this.wasSuccess = wasSuccess;
+            this.willClose = willClose;
+
+            this.window.isLockdownMode = true;
+            this.window.forceCleanUp = false;
 
             cleanUp();
         }
@@ -88,7 +93,14 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             await deleteFilesTask;
 
-            window.MainFrame.Content = new CompletedSetupPage(window, raspItem, wasSuccess);
+            if (willClose)
+            {
+                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, wasSuccess, willClose);
+            }
+            else
+            {
+                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, wasSuccess);
+            }
         }
     }
 }

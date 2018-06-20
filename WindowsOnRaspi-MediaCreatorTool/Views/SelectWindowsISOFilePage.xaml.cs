@@ -32,6 +32,9 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             this.window = window;
             this.raspItem = raspItem;
+
+            this.window.isLockdownMode = false;
+            this.window.forceCleanUp = false;
         }
 
         private void winImageButton_Click(object sender, RoutedEventArgs e)

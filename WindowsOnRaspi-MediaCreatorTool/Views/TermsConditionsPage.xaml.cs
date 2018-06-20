@@ -28,6 +28,8 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             InitializeComponent();
 
             this.window = window;
+            this.window.isLockdownMode = false;
+            this.window.forceCleanUp = false;
 
             termsTextBox.Text = "Welcome to Windows on Raspberry Pi Imager! This program will image a modified version of Windows on ARM64 to an SD card for use with a Raspberry Pi 3B or 3B "+
                            "You will need:" + "" +

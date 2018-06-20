@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,9 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             this.window = window;
             this.raspItem = raspItem;
+
+            this.window.isLockdownMode = true;
+            this.window.forceCleanUp = false;
 
             FormatSDDrive();
         }

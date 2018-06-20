@@ -34,6 +34,10 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.window = window;
             this.raspItem = raspItem;
 
+            this.window.isLockdownMode = true;
+            this.window.forceCleanUp = true;
+            this.window.raspItem = raspItem;
+
             SignWindowsFiles();
         }
 
