@@ -103,6 +103,8 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             await packagesTask;
 
             window.MainFrame.Content = new ModifingInstallWimPage(window, raspItem); 
+            //window.MainFrame.Content = new SigningWindowsFilesPage(window, raspItem);
+
         }
 
         // Allows Copying files and Folders from one Dir to Another

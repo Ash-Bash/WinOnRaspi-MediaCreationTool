@@ -38,12 +38,15 @@ namespace WindowsOnRaspi_MediaCreatorTool
         public MainWindow()
         {
             InitializeComponent();
+
+            // Automaticly Enables Start as Admin (Comment it if you want to debug application aka read the output)
+            AdminRelauncher();
+
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             MainFrame.Content = new StartUpPage(this);
 
-            // Automaticly Enables Start as Admin (Comment it if you want to debug application aka read the output)
-            AdminRelauncher();
+            Debug.WriteLine("Windows OS Version: {0}", Environment.OSVersion.ToString());
 
         }
 

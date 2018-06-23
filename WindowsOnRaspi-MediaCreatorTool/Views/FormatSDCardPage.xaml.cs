@@ -77,7 +77,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             await formatSDTask;
 
-            window.MainFrame.Content = new SelectPackagesPage(window, raspItem);
+            window.MainFrame.Content = new HasSDFormatedProperlyPage(window, raspItem);
            
         }
     }

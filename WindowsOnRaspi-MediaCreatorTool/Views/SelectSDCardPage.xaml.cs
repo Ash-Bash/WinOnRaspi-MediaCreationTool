@@ -114,6 +114,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                     {
                         // user clicked yes
                         window.MainFrame.Content = new FormatSDCardPage(window, raspItem);
+                        //window.MainFrame.Content = new SelectPackagesPage(window, raspItem);
                     }
                     else
                     {

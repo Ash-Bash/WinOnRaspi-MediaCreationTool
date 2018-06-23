@@ -45,8 +45,6 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         }
 
         private async void cleanUp() {
-            DirectoryInfo extrFolders = new DirectoryInfo(raspItem.tempFolders[1]);
-            FileInfo[] fileInfo = extrFolders.GetFiles();
 
             var unmountWimTask = Task.Run(() => {
                 string[] dismArgs = new string[3];
@@ -79,15 +77,20 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             var deleteFilesTask = Task.Run(() =>
             {
-                System.IO.DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(raspItem.appFolderPath, "temp"));
+                try
+                {
+                    System.IO.DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(raspItem.appFolderPath, "temp"));
 
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                    foreach (DirectoryInfo dir in di.GetDirectories())
+                    {
+                        dir.Delete(true);
+                    }
                 }
-                foreach (DirectoryInfo dir in di.GetDirectories())
-                {
-                    dir.Delete(true);
+                catch {
                 }
             });
 

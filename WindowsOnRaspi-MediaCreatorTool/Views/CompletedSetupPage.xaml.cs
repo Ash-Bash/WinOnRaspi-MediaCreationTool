@@ -42,10 +42,16 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             if (wasSuccess)
             {
                 titleTextBlock.Text = "Successfully Completed Windows Setup";
-                SuccessStack.Visibility = Visibility.Visible;
 
-                installUEFIButton.Content = raspItem.appFolderPath + "/SignWindows.cmd";
-                //signUEFIButton.Content = raspItem.appFolderPath + "/SignUEFIFiles.cmd";
+                if (raspItem != null)
+                {
+                    SuccessStack.Visibility = Visibility.Visible;
+                    installUEFIButton.Content = raspItem.appFolderPath + "/SignWindows.cmd";
+                    //signUEFIButton.Content = raspItem.appFolderPath + "/SignUEFIFiles.cmd";
+                } else
+                {
+                    SuccessStack.Visibility = Visibility.Collapsed;
+                }
             }
             else {
                 titleTextBlock.Text = "Unsuccessfully Completed Windows Setup";

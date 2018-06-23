@@ -73,6 +73,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                         cmd.StartInfo.Arguments += arg;
                     }
 
+                    cmd.StartInfo.CreateNoWindow = true;
                     cmd.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                     cmd.StartInfo.UseShellExecute = false;
                     cmd.StartInfo.RedirectStandardOutput = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,11 +33,14 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.window = window;
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = false;
+
+            Debug.WriteLine("Windows OS Version: " + Environment.OSVersion.Version.ToString());
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
             window.MainFrame.Content = new TermsConditionsPage(window);
+            //window.MainFrame.Content = new SigningWindowsFilesPage(window, null);
             window.MainFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         }
     }
