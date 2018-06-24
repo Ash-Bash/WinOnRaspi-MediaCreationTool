@@ -18,6 +18,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Classes
         public string sdSize { get; set; }
         public bool isUsingDebugPath { get; set; }
         public bool isUsingUSBBoot { get; set; }
+        public bool isCompressionMode { get; set; }
         public string[] tempFolders { get; set; }
     }
 }

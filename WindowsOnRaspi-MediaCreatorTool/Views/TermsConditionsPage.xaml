@@ -18,7 +18,7 @@
             <TextBlock Text="Terms &amp; Conditions" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1">
-            <TextBox x:Name="termsTextBox" Margin="10,10" />
+            <RichTextBox x:Name="termsTextBox" Margin="10,10" IsReadOnly="True"/>
         </Grid>
         <Grid Margin="0,0,0,0" Grid.Row="2">
             <Button x:Name="disagreeButton" Content="Disagree" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128" Height="36" Margin="0,0,148,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="disagreeButton_Click"/>

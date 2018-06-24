@@ -241,6 +241,8 @@
     <None Include="Assets\Data\InstallUEFI.cmd" />
     <None Include="Assets\Data\SignUEFIFiles.cmd" />
     <None Include="Assets\Data\signWindows.cmd" />
+    <None Include="Assets\Data\WinOnRaspiMediaCreationToolTerms.pdf" />
+    <None Include="Assets\Data\WinOnRaspiMediaCreationToolTerms.rtf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

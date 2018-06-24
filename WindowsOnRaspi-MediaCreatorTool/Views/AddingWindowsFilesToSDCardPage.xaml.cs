@@ -55,7 +55,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 {
                     string[] dismArgs = new string[3];
                     dismArgs[0] = "/apply-image /imagefile:install.wim /index:1 /applydir:" + @"I:";
-
+                    //dismArgs[0] = "wimlib-imagex apply install.wim 1 i:";
                     Process cmd = new Process();
                     if (Environment.Is64BitOperatingSystem)
                     {

@@ -121,5 +121,17 @@ namespace WindowsOnRaspi_MediaCreatorTool.Properties {
                 return ResourceManager.GetString("signWindows", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\deff0\adeflang1025
+        ///{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\fnil\fprq0\fcharset128 OpenSymbol{\*\falt Arial Unicode MS};}{\f4\fnil\fprq2\fcharset0 Microsoft YaHei;}{\f5\fnil\fprq2\fcharset0 Arial;}{\f6\fswiss\fprq0\fcharset128 Arial;}}
+        ///{\colortbl;\red0\green0\blue0;\red0\green0\blue128;\red128\green128\blue128;}
+        ///{\stylesheet{\s0\snext0\nowidctlpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\hic [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string WinOnRaspiMediaCreationToolTerms {
+            get {
+                return ResourceManager.GetString("WinOnRaspiMediaCreationToolTerms", resourceCulture);
+            }
+        }
     }
 }
