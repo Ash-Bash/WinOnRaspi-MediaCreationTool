@@ -21,7 +21,7 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <ProgressBar IsIndeterminate="True" Width="16" Margin="0,0,10,0"/>
-                    <TextBlock Text="Please Wait..." Foreground="White"/>
+                    <TextBlock Text="Please Wait... (May Take a Few Minutes)" Foreground="White"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

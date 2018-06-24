@@ -98,13 +98,6 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 }
 
                 // Extracts all required Zip Files
-                try
-                {
-                    File.Copy(raspItem.winImagePath, System.IO.Path.Combine(raspItem.tempFolders[1], "Windows10-Arm64.iso"));
-                }
-                catch {
-
-                }
 
                 try
                 {
@@ -151,7 +144,6 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             FileInfo[] fileInfo = extFolders.GetFiles();
 
             Debug.WriteLine(System.IO.Path.Combine(raspItem.tempFolders[1], fileInfo[0].ToString()));
-            var isoPath = System.IO.Path.Combine(raspItem.tempFolders[1], fileInfo[0].ToString());
 
             string driveLetter = null;
 
@@ -159,7 +151,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 using (var ps = PowerShell.Create())
                 {
                     var command = ps.AddCommand("Mount-DiskImage");
-                    command.AddParameter("ImagePath", isoPath);
+                    command.AddParameter("ImagePath", raspItem.winImagePath);
                     command.Invoke();
                     ps.Commands.Clear();
 
@@ -167,7 +159,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                     var runSpace = ps.Runspace;
                     var pipeLine = runSpace.CreatePipeline();
                     var getImageCommand = new Command("Get-DiskImage");
-                    getImageCommand.Parameters.Add("ImagePath", isoPath);
+                    getImageCommand.Parameters.Add("ImagePath", raspItem.winImagePath);
                     pipeLine.Commands.Add(getImageCommand);
                     pipeLine.Commands.Add("Get-Volume");
 
@@ -250,7 +242,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 {
                     //Unmount Via Image File Path
                     var command = ps.AddCommand("Dismount-DiskImage");
-                    command.AddParameter("ImagePath", isoPath);
+                    command.AddParameter("ImagePath", raspItem.winImagePath);
                     ps.Invoke();
                     ps.Commands.Clear();
                 }
