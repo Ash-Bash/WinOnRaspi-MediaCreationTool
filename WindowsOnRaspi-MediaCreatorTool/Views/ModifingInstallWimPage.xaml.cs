@@ -28,13 +28,21 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
+        private dynamic langjson;
 
-        public ModifingInstallWimPage(MainWindow window, WinRaspItem raspItem)
+        public ModifingInstallWimPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.modifingInstallWimPage.title;
+                subtitleTextBlock.Text = langjson.pages.modifingInstallWimPage.subtitle;
+            }
 
             this.window.isLockdownMode = true;
             this.window.forceCleanUp = true;
@@ -170,11 +178,11 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
                 await unmountInstallWimTask;
 
-                window.MainFrame.Content = new AddingWindowsFilesToSDCardPage(window, raspItem);
+                window.MainFrame.Content = new AddingWindowsFilesToSDCardPage(window, raspItem, langjson);
 
             } else
             {
-                window.MainFrame.Content = new CleanUpPage(window, raspItem, false);
+                window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, false);
             }
 
         }

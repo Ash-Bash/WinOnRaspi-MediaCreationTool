@@ -26,13 +26,20 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
+        private dynamic langjson;
 
-        public FormatSDCardPage(MainWindow window, WinRaspItem raspItem)
+        public FormatSDCardPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.formattingSDDrivePage.title;
+            }
 
             this.window.isLockdownMode = true;
             this.window.forceCleanUp = false;
@@ -77,7 +84,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             await formatSDTask;
 
-            window.MainFrame.Content = new HasSDFormatedProperlyPage(window, raspItem);
+            window.MainFrame.Content = new HasSDFormatedProperlyPage(window, raspItem, langjson);
            
         }
     }

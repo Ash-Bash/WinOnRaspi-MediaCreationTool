@@ -29,8 +29,9 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
+        private dynamic langjson;
 
-        public SettingUpTempFilesPage(MainWindow window, WinRaspItem raspItem)
+        public SettingUpTempFilesPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
@@ -43,6 +44,13 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.window.isLockdownMode = true;
             this.window.forceCleanUp = true;
             this.window.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.settingUpTempFilesPage.title;
+                subtitleTextBlock.Text = langjson.pages.settingUpTempFilesPage.subtitle;
+            }
             //this.window.SetPage(new CleanUpPage(this.window, raspItem, false));
 
             SetupTempFiles();
@@ -220,7 +228,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 else
                 {
                     Debug.WriteLine("File Exists: " + false);
-                    window.MainFrame.Content = new CleanUpPage(window, raspItem, false);
+                    window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, false);
                 }
             });
 
@@ -250,7 +258,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             await isoUnmountTask;
 
-            window.MainFrame.Content = new SelectedRecommendedDriversPage(window, raspItem);
+            window.MainFrame.Content = new SelectedRecommendedDriversPage(window, raspItem, langjson);
 
         }
 

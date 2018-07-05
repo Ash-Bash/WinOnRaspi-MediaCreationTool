@@ -15,7 +15,9 @@ namespace WindowsOnRaspi_MediaCreatorTool.Classes
         public string raspPiPkgPath { get; set; }
         public string rpiwinStuffPath { get; set; }
         public string rpiDriversPath { get; set; }
+        public string uupPackagePath { get; set; }
         public string sdSize { get; set; }
+        public string[] assignedDriveLetters = { "D", "F" };
         public bool isUsingDebugPath { get; set; }
         public bool isUsingUSBBoot { get; set; }
         public bool isCompressionMode { get; set; }

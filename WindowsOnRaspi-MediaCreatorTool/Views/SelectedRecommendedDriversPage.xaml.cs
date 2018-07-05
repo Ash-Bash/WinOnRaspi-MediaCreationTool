@@ -27,13 +27,26 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private MainWindow window;
         private WinRaspItem raspItem;
         private bool isAutoDrivers = true;
+        private dynamic langjson;
 
-        public SelectedRecommendedDriversPage(MainWindow window, WinRaspItem raspItem)
+        public SelectedRecommendedDriversPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.selectedRecommendedDriversPage.title;
+
+                useRecommendDriversRadioButton.Content = langjson.pages.selectedRecommendedDriversPage.option_1;
+                manuallySelectDriversRadioButton.Content = langjson.pages.selectedRecommendedDriversPage.option_2;
+
+                cancelButton.Content = langjson.common_elements.cancel_button;
+                nextButton.Content = langjson.common_elements.next_button;
+            }
 
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = true;
@@ -57,10 +70,14 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("This Action will stop the installation process and cleanup any files that was copied over, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+
+            string cancelAfterCleanUpAlertTitle = langjson.alerts_messages.cancelAfterCleanUpAlert.title;
+            string cancelAfterCleanUpAlertMessage = langjson.alerts_messages.cancelAfterCleanUpAlert.message;
+
+            if (MessageBox.Show(cancelAfterCleanUpAlertMessage, cancelAfterCleanUpAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 // user clicked yes
-                window.MainFrame.Content = new CleanUpPage(window, raspItem, false);
+                window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, false);
             }
             else
             {
@@ -86,10 +103,10 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
                 await packagesTask;
 
-                window.MainFrame.Content = new ModifingInstallWimPage(window, raspItem);
+                window.MainFrame.Content = new ModifingInstallWimPage(window, raspItem, langjson);
             }
             else {
-                window.MainFrame.Content = new ManualSelectionDriversPage(window, raspItem);
+                window.MainFrame.Content = new ManualSelectionDriversPage(window, raspItem, langjson);
             }
         }
 

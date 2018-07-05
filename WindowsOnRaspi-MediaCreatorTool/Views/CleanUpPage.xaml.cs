@@ -28,8 +28,9 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private WinRaspItem raspItem;
         private bool wasSuccess;
         private bool willClose;
+        private dynamic langjson;
 
-        public CleanUpPage(MainWindow window, WinRaspItem raspItem, bool wasSuccess, bool willClose = false)
+        public CleanUpPage(MainWindow window, WinRaspItem raspItem, dynamic lang, bool wasSuccess, bool willClose = false)
         {
             InitializeComponent();
 
@@ -37,6 +38,13 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.wasSuccess = wasSuccess;
             this.willClose = willClose;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.cleanUpPage.title;
+                subtitleTextBlock.Text = langjson.pages.cleanUpPage.subtitle;
+            }
 
             this.window.isLockdownMode = true;
             this.window.forceCleanUp = false;
@@ -102,7 +110,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             }
             else
             {
-                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, wasSuccess);
+                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, langjson, wasSuccess);
             }
         }
     }

@@ -27,13 +27,26 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private MainWindow window;
         private WinRaspItem raspItem;
         private string driverVersionName = "";
+        private dynamic langjson;
 
-        public ManualSelectionDriversPage(MainWindow window, WinRaspItem raspItem)
+        public ManualSelectionDriversPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.manualSelectionDriversPage.title;
+                driverListTextBlock.Text = langjson.pages.manualSelectionDriversPage.driverVersionComboBoxLabel;
+                isDebugModeCheckbox.Content = langjson.pages.manualSelectionDriversPage.debugModeLabel;
+
+                cancelButton.Content = langjson.common_elements.cancel_button;
+                backButton.Content = langjson.common_elements.back_button;
+                nextButton.Content = langjson.common_elements.next_button;
+            }
 
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = true;
@@ -64,10 +77,14 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("This Action will stop the installation process and cleanup any files that was copied over, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+
+            string cancelAfterCleanUpAlertTitle = langjson.alerts_messages.cancelAfterCleanUpAlert.title;
+            string cancelAfterCleanUpAlertMessage = langjson.alerts_messages.cancelAfterCleanUpAlert.message;
+
+            if (MessageBox.Show(cancelAfterCleanUpAlertMessage, cancelAfterCleanUpAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 // user clicked yes
-                window.MainFrame.Content = new CleanUpPage(window, raspItem, false);
+                window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, false);
             }
             else
             {
@@ -102,7 +119,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             await packagesTask;
 
-            window.MainFrame.Content = new ModifingInstallWimPage(window, raspItem); 
+            window.MainFrame.Content = new ModifingInstallWimPage(window, raspItem, langjson); 
             //window.MainFrame.Content = new SigningWindowsFilesPage(window, raspItem);
 
         }

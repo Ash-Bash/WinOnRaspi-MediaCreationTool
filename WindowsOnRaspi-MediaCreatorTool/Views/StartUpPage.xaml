@@ -12,12 +12,12 @@
         <StackPanel Height="100" Orientation="Horizontal" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Win On Raspi Media Creation Tool;component/Assets/Images/WORICLogo.png"/>
             <StackPanel>
-                <TextBlock Text="Windows" Foreground="White" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <TextBlock Text="On Raspberry Pi" Foreground="White" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBlock x:Name="titleTextBlock" Text="Windows" Foreground="White" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBlock x:Name="titleSecondaryTextBlock" Text="On Raspberry Pi" Foreground="White" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
             </StackPanel>
         </StackPanel>
         <Button x:Name="startButton" Content="Start" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="128" Height="36" Margin="0,0,0,100" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="startButton_Click"/>
-        <TextBlock Text="Working In Progress" Foreground="#7FFFFFFF" FontSize="20" TextAlignment="Center" VerticalAlignment="Top" Margin="0,210,0,217"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,9.6" TextWrapping="Wrap" Text="Windows is Copyright of Microsoft &amp; This is Not a Microsoft Official Product" VerticalAlignment="Bottom" Width="412" Foreground="#BFFFFFFF"/>
+        <TextBlock x:Name="subtitleTextBlock" Text="Working In Progress" Foreground="#7FFFFFFF" FontSize="20" TextAlignment="Center" VerticalAlignment="Top" Margin="0,210,0,217"/>
+        <TextBlock x:Name="disclaimerTextBlock" HorizontalAlignment="Left" Margin="10,0,0,9.6" TextWrapping="Wrap" Text="Windows is Copyright of Microsoft &amp; This is Not a Microsoft Official Product" VerticalAlignment="Bottom" Width="412" Foreground="#BFFFFFFF"/>
     </Grid>
 </Page>

@@ -27,8 +27,9 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
+        private dynamic langjson;
 
-        public SigningWindowsFilesPage(MainWindow window, WinRaspItem raspItem)
+        public SigningWindowsFilesPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
@@ -38,6 +39,13 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.window.isLockdownMode = true;
             this.window.forceCleanUp = true;
             this.window.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.signingWindowsFilesPage.title;
+                subtitleTextBlock.Text = langjson.pages.signingWindowsFilesPage.subtitle;
+            }
 
             SignWindowsFiles();
         }
@@ -169,7 +177,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             //await convertBootToEFITask;
 
-            window.MainFrame.Content = new CleanUpPage(window, raspItem, true);
+            window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, true);
         }
 
         public void ExecuteCommandSync(object command)

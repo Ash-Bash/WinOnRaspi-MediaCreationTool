@@ -1,4 +1,4 @@
-﻿<Page x:Class="WindowsOnRaspi_MediaCreatorTool.Views.SelectSDCardPage"
+﻿<Page x:Class="WindowsOnRaspi_MediaCreatorTool.Views.SelectAUUPPackageFilePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WindowsOnRaspi_MediaCreatorTool.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SelectSDCardPage">
+      Title="SelectAUUPPackageFilePage">
 
     <Grid Background="#FF2A006C">
         <Grid.RowDefinitions>
@@ -15,13 +15,15 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <Grid VerticalAlignment="Top" Grid.Row="0">
-            <TextBlock x:Name="titleTextBlock" Text="Select a Storage Drive" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+            <TextBlock x:Name="titleTextBlock" Text="Select A UUP Package File" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock x:Name="selectDriveTextBlock" Text="Select Drive" Foreground="#FFE4E4E4" Margin="0,0,0,5"/>
-                <ComboBox x:Name="sdCardCombobox" SelectionChanged="sdCardCombobox_SelectionChanged" />
-                <Button x:Name="refreshButton" Content="Refresh" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="128" Height="36" Margin="0,5,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="refreshButton_Click"/>
+                <StackPanel>
+                    <TextBlock x:Name="uupPackageTextBlock" Text="UUP Package File (.zip)" Margin="0,0,0,5" Foreground="#FFC5C5C5"/>
+                    <TextBox x:Name="uupPackageTextBox" Height="22.4" />
+                    <Button x:Name="uupPackageButton" Content="Browse" HorizontalAlignment="Left" Width="128" Height="36" Margin="0,5,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="uupPackageButton_Click"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Margin="0,0,0,0" Grid.Row="2">

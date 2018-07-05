@@ -15,17 +15,17 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <Grid VerticalAlignment="Top" Grid.Row="0">
-            <TextBlock Text="Select Window On Raspi Packages" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+            <TextBlock x:Name="titleTextBlock" Text="Select Window On Raspi Packages" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
             <StackPanel>
                 <StackPanel>
-                    <TextBlock Text="RaspberryPiPkg Zip File" Margin="0,0,0,5" Foreground="#FFC5C5C5"/>
+                    <TextBlock x:Name="raspberryPiPkgTextBlock" Text="RaspberryPiPkg Zip File" Margin="0,0,0,5" Foreground="#FFC5C5C5"/>
                     <TextBox x:Name="browseRaspiPkgTextBox" Height="22.4" />
                     <Button x:Name="browseRaspiPkgButton" Content="Browse" HorizontalAlignment="Left" Width="128" Height="36" Margin="0,5,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="browseRaspiPkgButton_Click"/>
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock Text="Windows On RPI Zip File" Margin="0,0,0,5" Foreground="#FFC5C5C5"/>
+                    <TextBlock x:Name="windowsOnRaspiTextBlock" Text="Windows On RPI Zip File" Margin="0,0,0,5" Foreground="#FFC5C5C5"/>
                     <TextBox x:Name="windowsOnRaspiTextBox" Height="22.4" />
                     <Button x:Name="browseWindowsOnRaspiButton" Content="Browse" HorizontalAlignment="Left" Width="128" Height="36" Margin="0,5,0,10" Background="#FF6200FF" FontWeight="Bold" Foreground="White" BorderThickness="0" Click="browseWindowsOnRaspiButton_Click"/>
                 </StackPanel>

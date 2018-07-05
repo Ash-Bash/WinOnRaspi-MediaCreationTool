@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
@@ -34,6 +35,7 @@ namespace WindowsOnRaspi_MediaCreatorTool
         public WinRaspItem raspItem;
 
         private Page cleanuppage;
+        private dynamic langjson;
 
         public MainWindow()
         {
@@ -42,11 +44,26 @@ namespace WindowsOnRaspi_MediaCreatorTool
             // Automaticly Enables Start as Admin (Comment it if you want to debug application aka read the output)
             AdminRelauncher();
 
+            Debug.WriteLine("Windows OS Version: {0}", Environment.OSVersion.ToString());
+
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            MainFrame.Content = new StartUpPage(this);
-
-            Debug.WriteLine("Windows OS Version: {0}", Environment.OSVersion.ToString());
+            string path = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+            string enlangjsonpath = System.IO.Path.Combine(path, "Data", "Lang", "EN-GB", "EN-GB.json");
+            string enlangjsonstring = null;
+            if (File.Exists(enlangjsonpath))
+            {
+                using (StreamReader r = new StreamReader(enlangjsonpath))
+                {
+                    enlangjsonstring = r.ReadToEnd();
+                    langjson = Newtonsoft.Json.JsonConvert.DeserializeObject(enlangjsonstring);
+                    SetLangJson(langjson);
+                    MainFrame.Content = new StartUpPage(this, langjson);
+                }
+            } else
+            {
+                MainFrame.Content = new StartUpPage(this, null);
+            }
 
         }
 
@@ -81,40 +98,65 @@ namespace WindowsOnRaspi_MediaCreatorTool
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
+        private void SetLangJson(dynamic json)
+        {
+            langjson = json;
+        }
+
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            if (isLockdownMode)
+            string cancelAlertTitle = langjson.alerts_messages.cancelAlert.title;
+            string cancelAlertMessage = langjson.alerts_messages.cancelAlert.message;
+            string cantCloseAlertTitle = langjson.alerts_messages.cantCloseAlert.title;
+            string cantCloseAlertMessage = langjson.alerts_messages.cantCloseAlert.message;
+            string closeAfterCleanUpAlertTitle = langjson.alerts_messages.closeAfterCleanUpAlert.title;
+            string closeAfterCleanUpAlertMessage = langjson.alerts_messages.closeAfterCleanUpAlert.message;
+            if (IsRunAsAdmin())
             {
-                e.Cancel = true;
-                MessageBox.Show("You Can't Close This Application at this time because the application is running an important task that may corrupt your system.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-            } else
-            {
-                if (forceCleanUp)
+                if (isLockdownMode)
                 {
                     e.Cancel = true;
-
-                    if (MessageBox.Show("If You Press Yes It will Clean Up and Close Application, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        // user clicked yes
-                        MainFrame.Content = new CleanUpPage(this, raspItem, false, true);
-                    }
-                    else
-                    {
-                        // user clicked no
-                    }
-
+                    MessageBox.Show(cantCloseAlertMessage, cantCloseAlertTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    if (MessageBox.Show("This Action will stop the installation process, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (forceCleanUp)
                     {
-                        // user clicked yes
-                        e.Cancel = false;
+                        e.Cancel = true;
+
+                        if (MessageBox.Show(closeAfterCleanUpAlertMessage, closeAfterCleanUpAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            // user clicked yes
+                            MainFrame.Content = new CleanUpPage(this, raspItem, false, true);
+                        }
+                        else
+                        {
+                            // user clicked no
+                        }
+
                     }
                     else
                     {
-                        // user clicked no
-                        e.Cancel = true;
+                        /*if (MessageBox.Show("This Action will stop the installation process, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            // user clicked yes
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            // user clicked no
+                            e.Cancel = true;
+                        }*/
+                        if (MessageBox.Show(cancelAlertMessage, cancelAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            // user clicked yes
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            // user clicked no
+                            e.Cancel = true;
+                        }
                     }
                 }
             }

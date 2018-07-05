@@ -27,14 +27,28 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private WinRaspItem raspItem;
         private string[] sdSizes;
 
+        private dynamic langjson;
+
         private int[] diskIndexList = { 0 };
 
-        public SelectSDCardPage(MainWindow window)
+        public SelectSDCardPage(MainWindow window, dynamic lang)
         {
             InitializeComponent();
 
             this.window = window;
+            this.langjson = lang;
             raspItem = new WinRaspItem();
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.selectDrivePage.title;
+                selectDriveTextBlock.Text = langjson.pages.selectDrivePage.selectDriveTextFieldLabel;
+
+                cancelButton.Content = langjson.common_elements.cancel_button;
+                backButton.Content = langjson.common_elements.back_button;
+                nextButton.Content = langjson.common_elements.next_button;
+                refreshButton.Content = langjson.common_elements.refresh_button;
+            }
 
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = false;
@@ -102,18 +116,26 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
+
+            string sdCardNotBigEnoughAlertTitle = langjson.alerts_messages.sdCardNotBigEnoughAlert.title;
+            string sdCardNotBigEnoughAlertMessage = langjson.alerts_messages.sdCardNotBigEnoughAlert.message;
+            string sdDriveRecommendationAlertTitle = langjson.alerts_messages.sdDriveRecommendationAlert.title;
+            string sdDriveRecommendationAlertMessage = langjson.alerts_messages.sdDriveRecommendationAlert.message;
+            string sdDriveWarningAlertTitle = langjson.alerts_messages.sdDriveWarningAlert.title;
+            string sdDriveWarningAlertMessage = langjson.alerts_messages.sdDriveWarningAlert.message;
+
             raspItem.diskIndex = diskIndexList[sdCardCombobox.SelectedIndex];
             raspItem.sdSize = sdSizes[sdCardCombobox.SelectedIndex];
 
             int sdSize = int.Parse(raspItem.sdSize);
             if (sdSize >= 14 && sdSize < 29 ) {
-                if (MessageBox.Show("It is Recommend that you use a 32GB or Higher Drive, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show(sdDriveRecommendationAlertMessage, sdDriveRecommendationAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     // user clicked yes
-                    if (MessageBox.Show("This Action will Format and Erase all data that was on the drive you selected, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (MessageBox.Show(sdDriveWarningAlertMessage, sdDriveWarningAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         // user clicked yes
-                        window.MainFrame.Content = new FormatSDCardPage(window, raspItem);
+                        window.MainFrame.Content = new FormatSDCardPage(window, raspItem, langjson);
                         //window.MainFrame.Content = new SelectPackagesPage(window, raspItem);
                     }
                     else
@@ -127,10 +149,10 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 }
             } else if (sdSize >= 29)
             {
-                if (MessageBox.Show("This Action will Format and Erase all data that was on the drive you selected, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show(sdDriveWarningAlertMessage, sdDriveWarningAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     // user clicked yes
-                    window.MainFrame.Content = new FormatSDCardPage(window, raspItem);
+                    window.MainFrame.Content = new FormatSDCardPage(window, raspItem, langjson);
                 }
                 else
                 {
@@ -139,16 +161,19 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             } else
             {
-                MessageBox.Show("Please uses a Drive that is 16GBs or Higher!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(sdCardNotBigEnoughAlertMessage, sdCardNotBigEnoughAlertTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("This Action will stop the installation process, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            string cancelAlertTitle = langjson.alerts_messages.cancelAlert.title;
+            string cancelAlertMessage = langjson.alerts_messages.cancelAlert.message;
+
+            if (MessageBox.Show(cancelAlertMessage, cancelAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 // user clicked yes
-                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, false);
+                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, langjson, false);
             }
             else
             {

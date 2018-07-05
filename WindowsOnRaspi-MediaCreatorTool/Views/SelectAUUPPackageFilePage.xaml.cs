@@ -18,16 +18,17 @@ using WindowsOnRaspi_MediaCreatorTool.Classes;
 namespace WindowsOnRaspi_MediaCreatorTool.Views
 {
     /// <summary>
-    /// Interaction logic for SelectWindowsISOFilePage.xaml
+    /// Interaction logic for SelectAUUPPackageFilePage.xaml
     /// </summary>
-    public partial class SelectWindowsISOFilePage : Page
+    public partial class SelectAUUPPackageFilePage : Page
     {
+
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
         private dynamic langjson;
 
-        public SelectWindowsISOFilePage(MainWindow window, WinRaspItem raspItem, dynamic lang)
+        public SelectAUUPPackageFilePage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
@@ -37,8 +38,8 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             if (langjson != null)
             {
-                titleTextBlock.Text = langjson.pages.selectWindowsISOFilePage.title;
-                winImageTextBlock.Text = langjson.pages.selectWindowsISOFilePage.winImageTextFieldLabel;
+                titleTextBlock.Text = langjson.pages.selectAUUPPackageFilePage.title;
+                uupPackageTextBlock.Text = langjson.pages.selectAUUPPackageFilePage.uupPackageTextFieldLabel;
 
                 cancelButton.Content = langjson.common_elements.cancel_button;
                 backButton.Content = langjson.common_elements.back_button;
@@ -49,22 +50,23 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.window.forceCleanUp = false;
         }
 
-        private void winImageButton_Click(object sender, RoutedEventArgs e)
+        private void uupPackageButton_Click(object sender, RoutedEventArgs e)
         {
             CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog();
-            openFileDialog.Filters.Add(new CommonFileDialogFilter("Disk Image", "iso"));
+            openFileDialog.Filters.Add(new CommonFileDialogFilter("Compression File", "zip"));
             CommonFileDialogResult result = openFileDialog.ShowDialog();
 
             if (result == CommonFileDialogResult.Ok)
             {
                 string dir = openFileDialog.FileName;
-                raspItem.winImagePath = dir;
-                winImageTextBox.Text = dir;
+                raspItem.uupPackagePath = dir;
+                uupPackageTextBox.Text = dir;
             }
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
+
             string cancelAlertTitle = langjson.alerts_messages.cancelAlert.title;
             string cancelAlertMessage = langjson.alerts_messages.cancelAlert.message;
 
@@ -87,16 +89,16 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
 
-            string invalidISOFileAlertTitle = langjson.alerts_messages.invalidISOFileAlert.title;
-            string invalidISOFileMessage = langjson.alerts_messages.invalidISOFileAlert.message;
+            string emptyPathAlertTitle = langjson.alerts_messages.emptyPathAlert.title;
+            string emptyPathMessage = langjson.alerts_messages.emptyPathAlert.message;
 
-            if (raspItem.winImagePath != null)
+            if (raspItem.uupPackagePath != null)
             {
-                window.MainFrame.Content = new SettingUpTempFilesPage(window, raspItem, langjson);
+                window.MainFrame.Content = new DownloadingWindowsISOFilePage(window, raspItem, langjson);
             }
             else
             {
-                MessageBox.Show(invalidISOFileMessage, invalidISOFileAlertTitle);
+                MessageBox.Show(emptyPathMessage, emptyPathAlertTitle);
             }
         }
     }

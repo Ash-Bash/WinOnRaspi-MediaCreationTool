@@ -26,20 +26,31 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
+        private dynamic langjson;
 
-        public StartUpPage(MainWindow window)
+        public StartUpPage(MainWindow window, dynamic lang)
         {
             InitializeComponent();
             this.window = window;
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = false;
+            this.langjson = lang;
+
+            if (langjson != null) {
+                titleTextBlock.Text = langjson.pages.welcomePage.title;
+                titleSecondaryTextBlock.Text = langjson.pages.welcomePage.title_secondary;
+                subtitleTextBlock.Text = langjson.pages.welcomePage.subtitle;
+                disclaimerTextBlock.Text = langjson.pages.welcomePage.disclaimer;
+
+                startButton.Content = langjson.common_elements.start_button;
+            }
 
             Debug.WriteLine("Windows OS Version: " + Environment.OSVersion.Version.ToString());
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            window.MainFrame.Content = new TermsConditionsPage(window);
+            window.MainFrame.Content = new TermsConditionsPage(window, langjson);
             //window.MainFrame.Content = new SigningWindowsFilesPage(window, null);
             window.MainFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         }

@@ -15,11 +15,11 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <Grid VerticalAlignment="Top" Grid.Row="0">
-            <TextBlock Text="Manually Select Raspberry Pi Drivers" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+            <TextBlock x:Name="titleTextBlock" Text="Manually Select Raspberry Pi Drivers" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="Select Driver Version" Foreground="#FFE4E4E4" Margin="0,0,0,5"/>
+                <TextBlock x:Name="driverListTextBlock" Text="Select Driver Version" Foreground="#FFE4E4E4" Margin="0,0,0,5"/>
                 <ComboBox x:Name="driversListCombobox" VerticalAlignment="Top" Margin="0,0,0,5" SelectionChanged="driversListCombobox_SelectionChanged"/>
                 <CheckBox x:Name="isDebugModeCheckbox" IsChecked="True" Content="Use Debug Drivers" Foreground="#FFE4E4E4"/>
             </StackPanel> 

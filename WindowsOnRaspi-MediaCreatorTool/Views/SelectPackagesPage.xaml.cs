@@ -26,12 +26,25 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private MainWindow window;
         private WinRaspItem raspItem;
 
-        public SelectPackagesPage(MainWindow window, WinRaspItem raspItem)
+        private dynamic langjson;
+
+        public SelectPackagesPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.selectingRaspiPackagesPage.title;
+                raspberryPiPkgTextBlock.Text = langjson.pages.selectingRaspiPackagesPage.raspPiPkgTextFieldLabel;
+                windowsOnRaspiTextBlock.Text = langjson.pages.selectingRaspiPackagesPage.winOnRaspTextFieldLabel;
+
+                cancelButton.Content = langjson.common_elements.cancel_button;
+                nextButton.Content = langjson.common_elements.next_button;
+            }
 
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = false;
@@ -68,10 +81,14 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("This Action will stop the installation process, Do you want to Continue?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+
+            string cancelAlertTitle = langjson.alerts_messages.cancelAlert.title;
+            string cancelAlertMessage = langjson.alerts_messages.cancelAlert.message;
+
+            if (MessageBox.Show(cancelAlertMessage, cancelAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 // user clicked yes
-                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, false);
+                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, langjson, false);
             }
             else
             {
@@ -86,12 +103,16 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
+
+            string oneOrMorePathsEmptyAlertTitle = langjson.alerts_messages.oneOrMorePathsEmptyAlert.title;
+            string oneOrMorePathsEmptyMessage = langjson.alerts_messages.oneOrMorePathsEmptyAlert.message;
+
             if (raspItem.raspPiPkgPath != null && raspItem.rpiwinStuffPath != null)
             {
-                window.MainFrame.Content = new SelectWindowsISOFilePage(window, raspItem);
+                window.MainFrame.Content = new ISOFiIeSourceOptionsPage(window, raspItem, langjson);
             } else
             {
-                MessageBox.Show("Can't continue because one or more paths hasn't been filled in!", "Error!");
+                MessageBox.Show(oneOrMorePathsEmptyMessage, oneOrMorePathsEmptyAlertTitle);
             }
         }
     }

@@ -15,13 +15,13 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <Grid VerticalAlignment="Top" Grid.Row="0">
-            <TextBlock Text="Setting Up Temp Files" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+            <TextBlock x:Name="titleTextBlock" Text="Setting Up Temp Files" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <ProgressBar IsIndeterminate="True" Width="16" Margin="0,0,10,0"/>
-                    <TextBlock Text="Please Wait... (May Take a Few Minutes)" Foreground="White"/>
+                    <TextBlock x:Name="subtitleTextBlock" Text="Please Wait... (May Take a Few Minutes)" Foreground="White"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

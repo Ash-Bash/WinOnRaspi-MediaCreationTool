@@ -27,13 +27,21 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
+        private dynamic langjson;
 
-        public AddingWindowsFilesToSDCardPage(MainWindow window, WinRaspItem raspItem)
+        public AddingWindowsFilesToSDCardPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                titleTextBlock.Text = langjson.pages.addingWindowsFilesToSDCardPage.title;
+                subtitleTextBlock.Text = langjson.pages.addingWindowsFilesToSDCardPage.subtitle;
+            }
 
             this.window.isLockdownMode = true;
             this.window.forceCleanUp = true;
@@ -93,11 +101,11 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 File.Copy(System.IO.Path.Combine(cdPath, "firststartup.reg"), "I:/firststartup.reg");
 
                 //window.MainFrame.Content = new SigningWindowsFilesPage(window, raspItem);
-                window.MainFrame.Content = new CleanUpPage(window, raspItem, true);
+                window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, true);
 
             } else
             {
-                window.MainFrame.Content = new CleanUpPage(window, raspItem, false);
+                window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, false);
             }
 
         }

@@ -27,21 +27,36 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
         private WinRaspItem raspItem;
         private bool wasSuccess;
         private bool willClose;
+        private dynamic langjson;
 
-        public CompletedSetupPage(MainWindow window, WinRaspItem raspItem, bool wasSuccess, bool willClose = false)
+        public CompletedSetupPage(MainWindow window, WinRaspItem raspItem, dynamic lang, bool wasSuccess, bool willClose = false)
         {
             InitializeComponent();
 
             this.window = window;
             this.raspItem = raspItem;
             this.wasSuccess = wasSuccess;
+            this.langjson = lang;
+
+            if (langjson != null)
+            {
+                subtitleTextBlock.Content = langjson.pages.completedSetupPage.subtitle;
+                exitButton.Content = langjson.common_elements.exit_button;
+            }
 
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = false;
 
             if (wasSuccess)
             {
-                titleTextBlock.Text = "Successfully Completed Windows Setup";
+                if (langjson != null)
+                {
+                    titleTextBlock.Text = langjson.pages.completedSetupPage.title_successful;
+                }
+                else
+                {
+                    titleTextBlock.Text = "Successfully Completed Windows Setup";
+                }
 
                 if (raspItem != null)
                 {
@@ -54,7 +69,14 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 }
             }
             else {
-                titleTextBlock.Text = "Unsuccessfully Completed Windows Setup";
+                if (langjson != null)
+                {
+                    titleTextBlock.Text = langjson.pages.completedSetupPage.title_unsuccessful;
+                }
+                else
+                {
+                    titleTextBlock.Text = "Unsuccessfully Completed Windows Setup";
+                }
                 SuccessStack.Visibility = Visibility.Collapsed;
             }
 

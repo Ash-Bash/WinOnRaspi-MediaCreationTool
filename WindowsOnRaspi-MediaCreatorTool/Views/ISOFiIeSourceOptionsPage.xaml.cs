@@ -1,5 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,16 +17,17 @@ using WindowsOnRaspi_MediaCreatorTool.Classes;
 namespace WindowsOnRaspi_MediaCreatorTool.Views
 {
     /// <summary>
-    /// Interaction logic for SelectWindowsISOFilePage.xaml
+    /// Interaction logic for ISOFiIeSourceOptionsPage.xaml
     /// </summary>
-    public partial class SelectWindowsISOFilePage : Page
+    public partial class ISOFiIeSourceOptionsPage : Page
     {
         // Variables
         private MainWindow window;
         private WinRaspItem raspItem;
+        private bool isWindowsPath = true;
         private dynamic langjson;
 
-        public SelectWindowsISOFilePage(MainWindow window, WinRaspItem raspItem, dynamic lang)
+        public ISOFiIeSourceOptionsPage(MainWindow window, WinRaspItem raspItem, dynamic lang)
         {
             InitializeComponent();
 
@@ -37,8 +37,10 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             if (langjson != null)
             {
-                titleTextBlock.Text = langjson.pages.selectWindowsISOFilePage.title;
-                winImageTextBlock.Text = langjson.pages.selectWindowsISOFilePage.winImageTextFieldLabel;
+                titleTextBlock.Text = langjson.pages.isoSelectionOptionsPage.title;
+
+                selectAWindowsISOFilePathRadioButton.Content = langjson.pages.isoSelectionOptionsPage.option_1;
+                downloadUsingUUPMethodRadioButton.Content = langjson.pages.isoSelectionOptionsPage.option_2;
 
                 cancelButton.Content = langjson.common_elements.cancel_button;
                 backButton.Content = langjson.common_elements.back_button;
@@ -47,19 +49,21 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             this.window.isLockdownMode = false;
             this.window.forceCleanUp = false;
+            this.window.raspItem = raspItem;
         }
 
-        private void winImageButton_Click(object sender, RoutedEventArgs e)
+        private void ISOFileOptionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog();
-            openFileDialog.Filters.Add(new CommonFileDialogFilter("Disk Image", "iso"));
-            CommonFileDialogResult result = openFileDialog.ShowDialog();
+            var radioButton = (RadioButton)sender;
 
-            if (result == CommonFileDialogResult.Ok)
+            switch (radioButton.Tag)
             {
-                string dir = openFileDialog.FileName;
-                raspItem.winImagePath = dir;
-                winImageTextBox.Text = dir;
+                case "isopath":
+                    isWindowsPath = true;
+                    break;
+                case "uupmethod":
+                    isWindowsPath = false;
+                    break;
             }
         }
 
@@ -71,7 +75,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             if (MessageBox.Show(cancelAlertMessage, cancelAlertTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 // user clicked yes
-                window.MainFrame.Content = new CompletedSetupPage(window, raspItem, langjson, false);
+                window.MainFrame.Content = new CleanUpPage(window, raspItem, langjson, false);
             }
             else
             {
@@ -84,19 +88,15 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             window.MainFrame.GoBack();
         }
 
-        private void nextButton_Click(object sender, RoutedEventArgs e)
+        private async void nextButton_Click(object sender, RoutedEventArgs e)
         {
-
-            string invalidISOFileAlertTitle = langjson.alerts_messages.invalidISOFileAlert.title;
-            string invalidISOFileMessage = langjson.alerts_messages.invalidISOFileAlert.message;
-
-            if (raspItem.winImagePath != null)
+            if (isWindowsPath)
             {
-                window.MainFrame.Content = new SettingUpTempFilesPage(window, raspItem, langjson);
+                window.MainFrame.Content = new SelectWindowsISOFilePage(window, raspItem, langjson);
             }
             else
             {
-                MessageBox.Show(invalidISOFileMessage, invalidISOFileAlertTitle);
+                window.MainFrame.Content = new SelectAUUPPackageFilePage(window, raspItem, langjson);
             }
         }
     }

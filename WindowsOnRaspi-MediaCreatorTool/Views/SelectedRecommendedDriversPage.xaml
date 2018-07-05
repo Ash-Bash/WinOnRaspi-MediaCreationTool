@@ -15,7 +15,7 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <Grid VerticalAlignment="Top" Grid.Row="0">
-            <TextBlock Text="Select Raspberry Pi Drivers" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+            <TextBlock x:Name="titleTextBlock" Text="Select Raspberry Pi Drivers" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
             <StackPanel>

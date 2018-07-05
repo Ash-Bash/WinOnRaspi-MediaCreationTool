@@ -15,13 +15,13 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <Grid VerticalAlignment="Top" Grid.Row="0">
-            <TextBlock Text="Has The SD Card Formatted Correctly?" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
+            <TextBlock x:Name="titleTextBlock" Text="Has The SD Card Formatted Correctly?" Margin="10,30,20,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="White"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,20" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="The SD Card should have been partitioned into two drives like below" Foreground="White" Margin="0,0,0,5"/>
-                <TextBlock Text="Please Check in Windows Explorer to see if it matches with the below" Foreground="White" Margin="0,0,0,5"/>
-                <TextBlock Text="(if it has correctly formatted please press YES else press NO):-" Foreground="White" Margin="0,0,0,5"/>
+                <TextBlock x:Name="subtitle_1TextBlock" Text="The SD Card should have been partitioned into two drives like below" Foreground="White" Margin="0,0,0,5"/>
+                <TextBlock x:Name="subtitle_2TextBlock" Text="Please Check in Windows Explorer to see if it matches with the below" Foreground="White" Margin="0,0,0,5"/>
+                <TextBlock x:Name="subtitle_3TextBlock" Text="(if it has correctly formatted please press YES else press NO):-" Foreground="White" Margin="0,0,0,5"/>
                 <TextBlock Text="P:/ - BOOT" Foreground="#FFD7D7D7" Margin="0,0,0,5"/>
                 <TextBlock Text="I:/ - Windows" Foreground="#FFD7D7D7" Margin="0,0,0,5"/>
             </StackPanel>
