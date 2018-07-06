@@ -37,7 +37,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.addingWindowsFilesToSDCardPage != null)
             {
                 titleTextBlock.Text = langjson.pages.addingWindowsFilesToSDCardPage.title;
                 subtitleTextBlock.Text = langjson.pages.addingWindowsFilesToSDCardPage.subtitle;

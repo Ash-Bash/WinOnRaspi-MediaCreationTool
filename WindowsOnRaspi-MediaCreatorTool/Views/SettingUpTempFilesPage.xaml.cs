@@ -46,7 +46,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.window.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.settingUpTempFilesPage != null)
             {
                 titleTextBlock.Text = langjson.pages.settingUpTempFilesPage.title;
                 subtitleTextBlock.Text = langjson.pages.settingUpTempFilesPage.subtitle;

@@ -40,7 +40,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.willClose = willClose;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.cleanUpPage != null)
             {
                 titleTextBlock.Text = langjson.pages.cleanUpPage.title;
                 subtitleTextBlock.Text = langjson.pages.cleanUpPage.subtitle;

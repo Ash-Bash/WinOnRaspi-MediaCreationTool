@@ -37,7 +37,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.manualSelectionDriversPage != null)
             {
                 titleTextBlock.Text = langjson.pages.manualSelectionDriversPage.title;
                 driverListTextBlock.Text = langjson.pages.manualSelectionDriversPage.driverVersionComboBoxLabel;

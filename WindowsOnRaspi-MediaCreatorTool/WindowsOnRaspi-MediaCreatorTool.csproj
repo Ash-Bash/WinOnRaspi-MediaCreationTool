@@ -139,6 +139,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\LangListItem.cs" />
     <Compile Include="Classes\Platform.cs" />
     <Compile Include="Views\AddingWindowsFilesToSDCardPage.xaml.cs">
       <DependentUpon>AddingWindowsFilesToSDCardPage.xaml</DependentUpon>
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="Views\ModifingInstallWimPage.xaml.cs">
       <DependentUpon>ModifingInstallWimPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectAppLanguagePage.xaml.cs">
+      <DependentUpon>SelectAppLanguagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectAUUPPackageFilePage.xaml.cs">
       <DependentUpon>SelectAUUPPackageFilePage.xaml</DependentUpon>
@@ -240,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ModifingInstallWimPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectAppLanguagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

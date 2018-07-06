@@ -37,7 +37,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.selectedRecommendedDriversPage != null)
             {
                 titleTextBlock.Text = langjson.pages.selectedRecommendedDriversPage.title;
 

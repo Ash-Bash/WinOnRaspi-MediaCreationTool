@@ -36,6 +36,7 @@ namespace WindowsOnRaspi_MediaCreatorTool
 
         private Page cleanuppage;
         private dynamic langjson;
+        private dynamic sourcejson;
 
         public MainWindow()
         {
@@ -47,21 +48,30 @@ namespace WindowsOnRaspi_MediaCreatorTool
             Debug.WriteLine("Windows OS Version: {0}", Environment.OSVersion.ToString());
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            MainFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
 
             string path = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-            string enlangjsonpath = System.IO.Path.Combine(path, "Data", "Lang", "EN-GB", "EN-GB.json");
-            string enlangjsonstring = null;
-            if (File.Exists(enlangjsonpath))
+            string sourcejsonpath = System.IO.Path.Combine(path, "Data", "Lang", "source.json");
+            if (File.Exists(sourcejsonpath))
             {
-                using (StreamReader r = new StreamReader(enlangjsonpath))
+                string enlangjsonpath = System.IO.Path.Combine(path, "Data", "Lang", "EN-GB", "EN-GB.json");
+                string enlangjsonstring = null;
+                if (File.Exists(enlangjsonpath))
                 {
-                    enlangjsonstring = r.ReadToEnd();
-                    langjson = Newtonsoft.Json.JsonConvert.DeserializeObject(enlangjsonstring);
-                    SetLangJson(langjson);
-                    MainFrame.Content = new StartUpPage(this, langjson);
+                    using (StreamReader r = new StreamReader(enlangjsonpath))
+                    {
+                        enlangjsonstring = r.ReadToEnd();
+                        langjson = Newtonsoft.Json.JsonConvert.DeserializeObject(enlangjsonstring);
+                        SetLangJson(langjson);
+                        MainFrame.Content = new SelectAppLanguagePage(this, langjson);
+                    }
                 }
-            } else
-            {
+                else
+                {
+                    MainFrame.Content = new StartUpPage(this, null);
+                }
+            }
+            else {
                 MainFrame.Content = new StartUpPage(this, null);
             }
 
@@ -98,7 +108,7 @@ namespace WindowsOnRaspi_MediaCreatorTool
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        private void SetLangJson(dynamic json)
+        public void SetLangJson(dynamic json)
         {
             langjson = json;
         }

@@ -36,7 +36,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.selectingRaspiPackagesPage != null)
             {
                 titleTextBlock.Text = langjson.pages.selectingRaspiPackagesPage.title;
                 raspberryPiPkgTextBlock.Text = langjson.pages.selectingRaspiPackagesPage.raspPiPkgTextFieldLabel;
@@ -109,8 +109,10 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             if (raspItem.raspPiPkgPath != null && raspItem.rpiwinStuffPath != null)
             {
-                window.MainFrame.Content = new ISOFiIeSourceOptionsPage(window, raspItem, langjson);
-            } else
+                window.MainFrame.Content = new SelectWindowsISOFilePage(window, raspItem, langjson);
+                //window.MainFrame.Content = new ISOFiIeSourceOptionsPage(window, raspItem, langjson);
+            }
+            else
             {
                 MessageBox.Show(oneOrMorePathsEmptyMessage, oneOrMorePathsEmptyAlertTitle);
             }

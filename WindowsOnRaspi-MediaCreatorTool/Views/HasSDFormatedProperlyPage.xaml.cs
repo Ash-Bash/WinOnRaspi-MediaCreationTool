@@ -34,7 +34,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.hasSDFormatedProperlyPage != null)
             {
                 titleTextBlock.Text = langjson.pages.hasSDFormatedProperlyPage.title;
                 subtitle_1TextBlock.Text = langjson.pages.hasSDFormatedProperlyPage.subtitle_1;

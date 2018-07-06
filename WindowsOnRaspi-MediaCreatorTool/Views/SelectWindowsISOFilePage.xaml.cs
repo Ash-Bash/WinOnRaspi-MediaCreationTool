@@ -35,7 +35,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.selectWindowsISOFilePage != null)
             {
                 titleTextBlock.Text = langjson.pages.selectWindowsISOFilePage.title;
                 winImageTextBlock.Text = langjson.pages.selectWindowsISOFilePage.winImageTextFieldLabel;

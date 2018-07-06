@@ -38,7 +38,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.wasSuccess = wasSuccess;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.completedSetupPage != null)
             {
                 subtitleTextBlock.Content = langjson.pages.completedSetupPage.subtitle;
                 exitButton.Content = langjson.common_elements.exit_button;
@@ -49,7 +49,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
 
             if (wasSuccess)
             {
-                if (langjson != null)
+                if (langjson != null && langjson.pages.completedSetupPage != null)
                 {
                     titleTextBlock.Text = langjson.pages.completedSetupPage.title_successful;
                 }
@@ -69,7 +69,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
                 }
             }
             else {
-                if (langjson != null)
+                if (langjson != null && langjson.pages.completedSetupPage != null)
                 {
                     titleTextBlock.Text = langjson.pages.completedSetupPage.title_unsuccessful;
                 }

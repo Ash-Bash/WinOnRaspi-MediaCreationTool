@@ -39,7 +39,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.langjson = lang;
             raspItem = new WinRaspItem();
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.selectDrivePage != null)
             {
                 titleTextBlock.Text = langjson.pages.selectDrivePage.title;
                 selectDriveTextBlock.Text = langjson.pages.selectDrivePage.selectDriveTextFieldLabel;

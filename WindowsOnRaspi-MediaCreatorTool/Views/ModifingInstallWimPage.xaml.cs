@@ -38,7 +38,7 @@ namespace WindowsOnRaspi_MediaCreatorTool.Views
             this.raspItem = raspItem;
             this.langjson = lang;
 
-            if (langjson != null)
+            if (langjson != null && langjson.pages.modifingInstallWimPage != null)
             {
                 titleTextBlock.Text = langjson.pages.modifingInstallWimPage.title;
                 subtitleTextBlock.Text = langjson.pages.modifingInstallWimPage.subtitle;
